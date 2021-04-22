@@ -40,6 +40,7 @@ allprojects {
             xml.isEnabled = JacocoProps.xmlEnabled
             csv.isEnabled = JacocoProps.csvEnabled
         }
+        finalizedBy(tasks.jacocoTestCoverageVerification)
     }
 
     tasks.test {
@@ -51,5 +52,6 @@ allprojects {
             enabled = JacocoProps.enabled
         }
         dependsOn(tasks.editorconfigCheck)
+        finalizedBy(tasks.jacocoTestReport)
     }
 }

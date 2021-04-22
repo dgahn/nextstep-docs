@@ -20,3 +20,15 @@ object JacocoProps {
     const val csvEnabled = false
     const val enabled = true
 }
+
+object JacocoOption {
+    const val element = "SOURCEFILE"
+    const val limitCounter = "LINE"
+    const val limitValue = "COVEREDRATIO"
+
+    val limitMinimum = (1.0).toBigDecimal()
+    val excludeList = listOf(
+            "me/dgahn/baseball/Launcher.java",
+            "me/dgahn/baseball/view/BaseBallConsoleView.java"
+    )
+}
