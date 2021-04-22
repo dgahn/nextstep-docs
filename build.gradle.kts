@@ -3,6 +3,7 @@ plugins {
     idea
     jacoco
     kotlin(KotlinPlugin.jvm) version KotlinVersion.kotlin
+    id(ProjectPlugin.editorConfig) version ProjectVersion.editorConfig
 }
 
 allprojects {
@@ -17,6 +18,7 @@ allprojects {
     apply(plugin = TestPlugin.jacoco)
     apply(plugin = ProjectPlugin.idea)
     apply(plugin = KotlinPlugin.kotlin)
+    apply(plugin = ProjectPlugin.editorConfig)
 
     dependencies {
         testImplementation(platform(TestLibs.junitBom))
@@ -26,6 +28,10 @@ allprojects {
 
     jacoco {
         toolVersion = TestVersion.jacoco
+    }
+
+    editorconfig {
+        excludes = listOf("*/build", "reviewguide", "codereview")
     }
 
     tasks.jacocoTestReport {
@@ -44,5 +50,6 @@ allprojects {
         jacoco {
             enabled = JacocoProps.enabled
         }
+        dependsOn(tasks.editorconfigCheck)
     }
 }

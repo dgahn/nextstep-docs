@@ -6,12 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Locale;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SetCollectionTest {
+class SetCollectionTest {
 
     @Test
     @DisplayName("Set의 size() 메소드는 Set의 크기를 구할 수 있다.")
