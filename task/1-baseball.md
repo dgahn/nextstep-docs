@@ -83,7 +83,7 @@ Set 콜렉션 테스트
 - @Parameterized를 활용한 테스트를 진행한다.
 ```
 
-#### feat() - 숫자를 입력 받는 기능 구현
+#### feat(BaseBall, BaseBallConsoleView, Launcher) - 숫자를 입력 받는 기능 구현
 
 ```
 숫자를 입력 받는 기능을 구현한다.
