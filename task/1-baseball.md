@@ -104,10 +104,18 @@ BaseBall의 기본 생성자를 호출하면 value 값이 랜덤으로 생성된
 랜덤으로 생성된 값은 100 이상 999 이하의 값을 가진다.
 ```
 
-### feat(BaseBall, BaseBallResult, BaseBallTest) : 같은 숫자, 같은 자리수가 없는 경우 구현
+### feat(BaseBall, BaseBallResult, BaseBallTest) : 같은 숫자, 같은 자리수가 없는 경우 기능 구현
 
 ```
 두 개의 BaseBall을 비교하는데 같은 숫자, 같은 자리수가 없는 경우에 대해 구현한다.
 
 첫 번째 구현 테스트이기 때문에 간단하게 구현한다.
+```
+
+### feat(BaseBall, BaseBallResult, BaseBallTest) : 1, 2, 3개의 자리수가 같은 경우 기능 구현
+
+```
+2개의 BaseBall을 비교하는데 3개의 자리수가 같은 경우를 구현한다.
+
+자리수 비교를 위해서 BaseBall의 value는 int 값이 아닌 String으로 변환해서 사용한다.
 ```

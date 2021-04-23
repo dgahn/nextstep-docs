@@ -15,7 +15,7 @@ class BaseBallTest {
 	@ValueSource(ints = {100, 150, 200, 999})
 	void makePossibleBaseBallTest(final int input) {
 		final var baseBall = new BaseBall(input);
-		assertThat(baseBall.getValue()).isEqualTo(input);
+		assertThat(baseBall.getValue()).isEqualTo(Integer.toString(input));
 	}
 
 	@ParameterizedTest
@@ -33,7 +33,7 @@ class BaseBallTest {
 	void defaultConstructBaseBallTest() {
 		for (int i = 0; i < 10000; i++) {
 			final BaseBall baseBall = new BaseBall();
-			assertThat(baseBall.getValue()).isBetween(100, 999);
+			assertThat(Integer.parseInt(baseBall.getValue())).isBetween(100, 999);
 		}
 	}
 
@@ -44,6 +44,33 @@ class BaseBallTest {
 		final var problemBall = new BaseBall(Integer.parseInt(problemString));
 		final var answerBall = new BaseBall(Integer.parseInt(answerString));
 		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.NOTHING);
+	}
+
+	@ParameterizedTest
+	@DisplayName("3개의 자리수가 모두 같으면 THREE_STRIKE을 반환한다.")
+	@CsvSource(value = {"123:123", "345:345", "111:111", "912:912"}, delimiter = ':')
+	void threeStrikePrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.THREE_STRIKE);
+	}
+
+	@ParameterizedTest
+	@DisplayName("2개의 자리수가 모두 같으면 TWO_STRIKE을 반환한다.")
+	@CsvSource(value = {"123:124", "123:143", "123:423"}, delimiter = ':')
+	void twoStrikePrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.TWO_STRIKE);
+	}
+
+	@ParameterizedTest
+	@DisplayName("1개의 자리수가 모두 같으면 ONE_STRIKE을 반환한다.")
+	@CsvSource(value = {"123:132", "123:321", "123:213"}, delimiter = ':')
+	void oneStrikePrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_STRIKE);
 	}
 
 }

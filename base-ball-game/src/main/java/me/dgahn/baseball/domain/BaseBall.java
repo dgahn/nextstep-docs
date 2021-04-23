@@ -5,26 +5,41 @@ import static me.dgahn.baseball.util.Constants.*;
 import java.util.Random;
 
 public class BaseBall {
-	private final int value;
+	private final String value;
 
 	public BaseBall() {
 		final var random = new Random();
-		this.value = getRandomValue(random);
+		this.value = Integer.toString(getRandomValue(random));
 	}
 
 	public BaseBall(final int value) {
 		if (!checkValidValue(value)) {
 			throw new IllegalArgumentException("숫자는 100이상 999이하여야 합니다. (number : " + value + ")");
 		}
-		this.value = value;
+		this.value = Integer.toString(value);
 	}
 
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 
 	public BaseBallResult prepare(final BaseBall baseBall) {
+		var sameNumberOfDigits = checkEachNumberOfDigits(baseBall);
+		if (sameNumberOfDigits == BaseBallResult.THREE_STRIKE.getStrikeNumber()) return BaseBallResult.THREE_STRIKE;
+		if (sameNumberOfDigits == BaseBallResult.TWO_STRIKE.getStrikeNumber()) return BaseBallResult.TWO_STRIKE;
+		if (sameNumberOfDigits == BaseBallResult.ONE_STRIKE.getStrikeNumber()) return BaseBallResult.ONE_STRIKE;
+
 		return BaseBallResult.NOTHING;
+	}
+
+	private int checkEachNumberOfDigits(final BaseBall baseBall) {
+		var count = 0;
+		for (var i = 0; i < value.length(); i++) {
+			if (this.value.charAt(i) == baseBall.value.charAt(i)) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	private boolean checkValidValue(final int value) {
