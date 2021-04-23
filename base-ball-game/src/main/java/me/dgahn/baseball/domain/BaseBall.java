@@ -27,17 +27,11 @@ public class BaseBall {
 	public BaseBallResult prepare(final BaseBall baseBall) {
 		final var strikeNumber = checkStrike(baseBall);
 		final var ballNumber = checkBall(baseBall);
-		if (strikeNumber == BaseBallResult.THREE_STRIKE.getStrikeNumber()) return BaseBallResult.THREE_STRIKE;
-		if (strikeNumber == BaseBallResult.TWO_STRIKE.getStrikeNumber()) return BaseBallResult.TWO_STRIKE;
-		if (strikeNumber == BaseBallResult.ONE_STRIKE_ONE_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_ONE_BALL
-			.getBallNumber()) return BaseBallResult.ONE_STRIKE_ONE_BALL;
-		if (strikeNumber == BaseBallResult.ONE_STRIKE_TWO_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_TWO_BALL
-			.getBallNumber()) return BaseBallResult.ONE_STRIKE_TWO_BALL;
-		if (strikeNumber == BaseBallResult.ONE_STRIKE.getStrikeNumber()) return BaseBallResult.ONE_STRIKE;
-		if (ballNumber == BaseBallResult.TWO_BALL.getBallNumber()) return BaseBallResult.TWO_BALL;
-		if (ballNumber == BaseBallResult.ONE_BALL.getBallNumber()) return BaseBallResult.ONE_BALL;
 
-		return BaseBallResult.NOTHING;
+		if(strikeNumber != 0 && ballNumber == 0) return prepareStrike(strikeNumber);
+		if(strikeNumber == 0 && ballNumber != 0) return prepareBall(ballNumber);
+
+		return prepareNoStrike(strikeNumber, ballNumber);
 	}
 
 	private int checkStrike(final BaseBall baseBall) {
@@ -61,6 +55,28 @@ public class BaseBall {
 			}
 		}
 		return count;
+	}
+
+	private BaseBallResult prepareStrike(final int strikeNumber) {
+		if (strikeNumber == BaseBallResult.THREE_STRIKE.getStrikeNumber()) return BaseBallResult.THREE_STRIKE;
+		if (strikeNumber == BaseBallResult.TWO_STRIKE.getStrikeNumber()) return BaseBallResult.TWO_STRIKE;
+
+		return BaseBallResult.ONE_STRIKE;
+	}
+
+	private BaseBallResult prepareBall(final int ballNumber) {
+		if (ballNumber == BaseBallResult.TWO_BALL.getBallNumber()) return BaseBallResult.TWO_BALL;
+
+		return BaseBallResult.ONE_BALL;
+	}
+
+	private BaseBallResult prepareNoStrike(final int strikeNumber, final int ballNumber) {
+		if (strikeNumber == BaseBallResult.ONE_STRIKE_ONE_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_ONE_BALL
+			.getBallNumber()) return BaseBallResult.ONE_STRIKE_ONE_BALL;
+		if (strikeNumber == BaseBallResult.ONE_STRIKE_TWO_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_TWO_BALL
+			.getBallNumber()) return BaseBallResult.ONE_STRIKE_TWO_BALL;
+
+		return BaseBallResult.NOTHING;
 	}
 
 	private boolean checkValidValue(final int value) {

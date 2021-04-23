@@ -48,7 +48,7 @@ class BaseBallTest {
 
 	@ParameterizedTest
 	@DisplayName("3개의 자리수가 모두 같으면 THREE_STRIKE을 반환한다.")
-	@CsvSource(value = {"123:123", "345:345", "111:111", "912:912"}, delimiter = ':')
+	@CsvSource(value = {"123:123", "345:345", "912:912"}, delimiter = ':')
 	void threeStrikePrepareTest(final String problemString, final String answerString) {
 		final var problemBall = new BaseBall(Integer.parseInt(problemString));
 		final var answerBall = new BaseBall(Integer.parseInt(answerString));
