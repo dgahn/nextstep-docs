@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BaseBallTest {
@@ -31,9 +32,18 @@ class BaseBallTest {
 	@DisplayName("기본 생성자로 3자리 숫자의 value를 갖는 BaseBall을 만들 수 있다.")
 	void defaultConstructBaseBallTest() {
 		for (int i = 0; i < 10000; i++) {
-			BaseBall baseBall = new BaseBall();
+			final BaseBall baseBall = new BaseBall();
 			assertThat(baseBall.getValue()).isBetween(100, 999);
 		}
+	}
+
+	@ParameterizedTest
+	@DisplayName("같은 숫자, 같은 자리수가 없으면 NOTHING을 반환한다.")
+	@CsvSource(value = {"123:456", "321:444", "987:612", "777:666"}, delimiter = ':')
+	void nothingPrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.NOTHING);
 	}
 
 }

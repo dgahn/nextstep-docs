@@ -23,6 +23,10 @@ public class BaseBall {
 		return value;
 	}
 
+	public BaseBallResult prepare(final BaseBall baseBall) {
+		return BaseBallResult.NOTHING;
+	}
+
 	private boolean checkValidValue(final int value) {
 		return value >= BASE_BALL_MIN_NUMBER && value <= BASE_BALL_MAX_NUMBER;
 	}
