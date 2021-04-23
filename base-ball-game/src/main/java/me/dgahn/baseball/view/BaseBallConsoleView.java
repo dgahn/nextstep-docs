@@ -11,7 +11,7 @@ public class BaseBallConsoleView {
 
 	public BaseBall getBaseball() {
 		try {
-			out.println("숫자를 입력해주세요(100 ~ 999) : ");
+			out.println("숫자를 입력해주세요(100 ~ 999 중 3개의 자리 수가 중복되지 않는 수) : ");
 			final var sc = new Scanner(in);
 			return new BaseBall(sc.nextInt());
 		} catch (InputMismatchException e) {

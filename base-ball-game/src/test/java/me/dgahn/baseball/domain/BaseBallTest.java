@@ -12,7 +12,7 @@ class BaseBallTest {
 
 	@ParameterizedTest
 	@DisplayName("100에서 999이하의 숫자로 BaseBall을 만들 수 있다.")
-	@ValueSource(ints = {100, 150, 200, 999})
+	@ValueSource(ints = {123, 150, 213, 987})
 	void makePossibleBaseBallTest(final int input) {
 		final var baseBall = new BaseBall(input);
 		assertThat(baseBall.getValue()).isEqualTo(Integer.toString(input));
@@ -21,11 +21,19 @@ class BaseBallTest {
 	@ParameterizedTest
 	@DisplayName("100미만이거나 999초과의 숫자로 BaseBall을 만들면 IllegalArgumentException이 발생한다.")
 	@ValueSource(ints = {-1, 99, 1000})
-	void makeImpossibleBaseBallTest(final int input) {
+	void makeInvalidNumberRangeBaseBallTest(final int input) {
 		assertThatThrownBy(() -> new BaseBall(input))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("숫자는 100이상 999이하여야 합니다. (number : " + input + ")");
-		;
+	}
+
+	@ParameterizedTest
+	@DisplayName("100미만이거나 999초과의 숫자로 BaseBall을 만들면 IllegalArgumentException이 발생한다.")
+	@ValueSource(ints = {111, 112, 121, 211})
+	void makeInvalidDuplicateNumberBaseBallTest(final int input) {
+		assertThatThrownBy(() -> new BaseBall(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("숫자가 중복되면 안됩니다. (number : " + input + ")");
 	}
 
 	@Test
@@ -39,7 +47,7 @@ class BaseBallTest {
 
 	@ParameterizedTest
 	@DisplayName("같은 숫자, 같은 자리수가 없으면 NOTHING을 반환한다.")
-	@CsvSource(value = {"123:456", "321:444", "987:612", "777:666"}, delimiter = ':')
+	@CsvSource(value = {"123:456", "321:456", "987:612"}, delimiter = ':')
 	void nothingPrepareTest(final String problemString, final String answerString) {
 		final var problemBall = new BaseBall(Integer.parseInt(problemString));
 		final var answerBall = new BaseBall(Integer.parseInt(answerString));
