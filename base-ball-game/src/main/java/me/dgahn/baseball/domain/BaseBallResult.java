@@ -4,7 +4,9 @@ public enum BaseBallResult {
 	NOTHING(0, 0, "낫싱"),
 	THREE_STRIKE(3, 0, "3 스트라이크"),
 	TWO_STRIKE(2, 0, "2 스트라이크"),
-	ONE_STRIKE(1, 0, "1 스트라이크");
+	ONE_STRIKE(1, 0, "1 스트라이크"),
+	TWO_BALL(0, 2, "2볼"),
+	ONE_BALL(0, 1, "1볼");
 
 	private final int strikeNumber;
 	private final int ballNumber;

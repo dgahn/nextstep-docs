@@ -73,4 +73,22 @@ class BaseBallTest {
 		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_STRIKE);
 	}
 
+	@ParameterizedTest
+	@DisplayName("2개의 자리수가 모두 다르지만 같은 2개의 수가 존재하면 TWO_BALL을 반환한다.")
+	@CsvSource(value = {"123:214", "143:321", "123:432"}, delimiter = ':')
+	void threeBallPrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.TWO_BALL);
+	}
+
+	@ParameterizedTest
+	@DisplayName("1개의 자리수가 다르지만 같은 1개의 수가 존재하면 ONE_BALL을 반환한다.")
+	@CsvSource(value = {"123:415", "123:451", "213:451"}, delimiter = ':')
+	void oneBallPrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_BALL);
+	}
+
 }
