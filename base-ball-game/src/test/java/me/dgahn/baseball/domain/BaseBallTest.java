@@ -66,7 +66,7 @@ class BaseBallTest {
 
 	@ParameterizedTest
 	@DisplayName("1개의 자리수가 모두 같으면 ONE_STRIKE을 반환한다.")
-	@CsvSource(value = {"123:132", "123:321", "123:213"}, delimiter = ':')
+	@CsvSource(value = {"123:145", "123:425", "123:453"}, delimiter = ':')
 	void oneStrikePrepareTest(final String problemString, final String answerString) {
 		final var problemBall = new BaseBall(Integer.parseInt(problemString));
 		final var answerBall = new BaseBall(Integer.parseInt(answerString));
@@ -89,6 +89,24 @@ class BaseBallTest {
 		final var problemBall = new BaseBall(Integer.parseInt(problemString));
 		final var answerBall = new BaseBall(Integer.parseInt(answerString));
 		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_BALL);
+	}
+
+	@ParameterizedTest
+	@DisplayName("1개의 자리수가 같고 숫자가 1개의 숫자가 같으면 ONE_STRIKE_ONE_BALL을 반환한다.")
+	@CsvSource(value = {"123:142", "321:124", "123:413"}, delimiter = ':')
+	void oneStrikeOneBallPrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_STRIKE_ONE_BALL);
+	}
+
+	@ParameterizedTest
+	@DisplayName("1개의 자리수가 같고 숫자가 2개의 숫자가 같으면 ONE_STRIKE_TWO_BALL을 반환한다.")
+	@CsvSource(value = {"123:132", "123:321", "123:213"}, delimiter = ':')
+	void oneStrikeTwoBallPrepareTest(final String problemString, final String answerString) {
+		final var problemBall = new BaseBall(Integer.parseInt(problemString));
+		final var answerBall = new BaseBall(Integer.parseInt(answerString));
+		assertThat(problemBall.prepare(answerBall)).isEqualTo(BaseBallResult.ONE_STRIKE_TWO_BALL);
 	}
 
 }

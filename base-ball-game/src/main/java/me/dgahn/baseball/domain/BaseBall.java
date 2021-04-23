@@ -29,6 +29,10 @@ public class BaseBall {
 		final var ballNumber = checkBall(baseBall);
 		if (strikeNumber == BaseBallResult.THREE_STRIKE.getStrikeNumber()) return BaseBallResult.THREE_STRIKE;
 		if (strikeNumber == BaseBallResult.TWO_STRIKE.getStrikeNumber()) return BaseBallResult.TWO_STRIKE;
+		if (strikeNumber == BaseBallResult.ONE_STRIKE_ONE_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_ONE_BALL
+			.getBallNumber()) return BaseBallResult.ONE_STRIKE_ONE_BALL;
+		if (strikeNumber == BaseBallResult.ONE_STRIKE_TWO_BALL.getStrikeNumber() && ballNumber == BaseBallResult.ONE_STRIKE_TWO_BALL
+			.getBallNumber()) return BaseBallResult.ONE_STRIKE_TWO_BALL;
 		if (strikeNumber == BaseBallResult.ONE_STRIKE.getStrikeNumber()) return BaseBallResult.ONE_STRIKE;
 		if (ballNumber == BaseBallResult.TWO_BALL.getBallNumber()) return BaseBallResult.TWO_BALL;
 		if (ballNumber == BaseBallResult.ONE_BALL.getBallNumber()) return BaseBallResult.ONE_BALL;
@@ -51,6 +55,7 @@ public class BaseBall {
 		for (var i = 0; i < value.length(); i++) {
 			final var stringBuilder = new StringBuilder(baseBall.value);
 			final var subValue = stringBuilder.deleteCharAt(i).toString();
+			// ToDo indexOf를 통해 포함이 되는지 확인하는 함수를 별도로 빼서 가독성 올릴 필요성이 있음.
 			if(subValue.indexOf(this.value.charAt(i)) > -1) {
 				count++;
 			}
