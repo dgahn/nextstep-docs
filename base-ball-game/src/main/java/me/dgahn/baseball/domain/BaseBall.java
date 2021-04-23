@@ -4,6 +4,8 @@ import static me.dgahn.baseball.util.Constants.*;
 
 import java.util.Random;
 
+import me.dgahn.baseball.util.StringUtil;
+
 public class BaseBall {
 	private final String value;
 
@@ -54,8 +56,7 @@ public class BaseBall {
 		for (var i = 0; i < value.length(); i++) {
 			final var stringBuilder = new StringBuilder(baseBall.value);
 			final var subValue = stringBuilder.deleteCharAt(i).toString();
-			// ToDo indexOf를 통해 포함이 되는지 확인하는 함수를 별도로 빼서 가독성 올릴 필요성이 있음.
-			if (subValue.indexOf(this.value.charAt(i)) > -1) {
+			if (StringUtil.contains(subValue, this.value.charAt(i))) {
 				count++;
 			}
 		}
@@ -99,7 +100,7 @@ public class BaseBall {
 		for (var i = 0; i < stringValue.length(); i++) {
 			final var stringBuilder = new StringBuilder(stringValue);
 			final var subValue = stringBuilder.deleteCharAt(i).toString();
-			if (subValue.indexOf(stringValue.charAt(i)) > -1) {
+			if (StringUtil.contains(subValue, stringValue.charAt(i))) {
 				return false;
 			}
 		}
