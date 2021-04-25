@@ -29,8 +29,7 @@ public class BaseBallViewModel {
 	public void process(final BaseBall answerBall) {
 		final var problemBall = generator.getBaseBall();
 
-		// ToDo 비교하기는 prepare가 아니라 compare임.
-		baseBallResult = problemBall.prepare(answerBall);
+		baseBallResult = problemBall.compare(answerBall);
 		if (baseBallResult == BaseBallResult.THREE_STRIKE) {
 			setCompleted(true);
 		}

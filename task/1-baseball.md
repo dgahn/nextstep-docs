@@ -200,3 +200,9 @@ MVC 패턴에서 MVVM 패턴으로 변경한다.
 ```
 게임 상태를 BaseBallViewModel에서 관리함에 따라 기능을 변경한다.
 ```
+
+### refactor(BaseBall, BaseBallViewModel, BaseBallTest) : 코딩 컨벤션 수정 및 오타 변경
+
+```
+코딩 컨벤션을 지키지 않은 것이나 오타가 있는 것에 대해 수정한다.
+```

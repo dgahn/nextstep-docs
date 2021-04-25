@@ -8,6 +8,7 @@ import java.util.Scanner;
 import me.dgahn.baseball.domain.BaseBall;
 import me.dgahn.baseball.domain.BaseBallResult;
 
+// ToDo 입력 또는 출력하는 기능만 있도록 구조 변경 필요.
 public class BaseBallConsoleView {
 
 	private final Scanner scanner;
