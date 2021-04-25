@@ -194,3 +194,9 @@ MVC 패턴에서 MVVM 패턴으로 변경한다.
 - 처음 게임이 시작하면 false다.
 - 숫자를 맞추면 true다.
 ```
+
+### refactor(Launcher, BaseBallConsoleView, BaseBallViewModel, BaseBallViewModelTest) :  게임에서 실행 기능에 대해 개편
+
+```
+게임 상태를 BaseBallViewModel에서 관리함에 따라 기능을 변경한다.
+```

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import me.dgahn.baseball.domain.BaseBall;
+import me.dgahn.baseball.domain.BaseBallResult;
 import me.dgahn.baseball.repo.RandomNumberGenerator;
 
 class BaseBallViewModelTest {
@@ -20,8 +21,8 @@ class BaseBallViewModelTest {
 	}
 
 	@Test
-	@DisplayName("숫자를 맞추면 완료 상태는 true다.")
-	void whenMatchTheNumberThenTheCompletionStatusIsTrue() {
+	@DisplayName("숫자를 맞추면 완료 상태는 true고 BaseBallResult는 THREE_STRIKE다.")
+	void whenMatchTheNumberThenTheCompletionStatusIsTrueAndBaseBallResultIsThreeStrike() {
 		// given
 		final var generator = mock(RandomNumberGenerator.class);
 		final var baseBall = new BaseBall(123);
@@ -31,5 +32,6 @@ class BaseBallViewModelTest {
 
 		// then
 		assertThat(viewModel.isCompleted()).isTrue();
+		assertThat(viewModel.getBaseBallResult()).isEqualTo(BaseBallResult.THREE_STRIKE);
 	}
 }

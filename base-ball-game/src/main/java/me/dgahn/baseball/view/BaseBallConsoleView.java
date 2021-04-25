@@ -16,34 +16,33 @@ public class BaseBallConsoleView {
 		this.scanner = scanner;
 	}
 
-	public BaseBall getBaseball() {
+	public BaseBall input() {
 		try {
 			out.println("숫자를 입력해주세요(100 ~ 999 중 3개의 자리 수가 중복되지 않는 수) : ");
 			return new BaseBall(scanner.nextInt());
 		} catch (InputMismatchException e) {
 			err.println("숫자를 입력해야합니다.(100 ~ 999)");
-			return getBaseball();
+			return input();
 		} catch (IllegalArgumentException e) {
 			err.println(e.getMessage());
-			return getBaseball();
+			return input();
 		}
 	}
 
-	public boolean again() {
+	public boolean retry() {
 		try {
 			out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. : ");
-			final var sc = new Scanner(in);
-			final var num = sc.nextInt();
-			if(num <= 0 || num > 2) {
+			final var num = scanner.nextInt();
+			if (num <= 0 || num > 2) {
 				throw new IllegalArgumentException("1 또는 2를 입력해야합니다.");
 			}
 			return num == 1;
 		} catch (InputMismatchException e) {
 			err.println("숫자를 입력해야합니다.(1 ~ 2)");
-			return again();
+			return retry();
 		} catch (IllegalArgumentException e) {
 			err.println(e.getMessage());
-			return again();
+			return retry();
 		}
 	}
 
