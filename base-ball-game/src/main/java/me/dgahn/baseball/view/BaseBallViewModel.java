@@ -1,28 +1,28 @@
-package me.dgahn.baseball.application;
+package me.dgahn.baseball.view;
 
 import static java.lang.System.*;
 
 import me.dgahn.baseball.domain.BaseBall;
 import me.dgahn.baseball.domain.BaseBallResult;
-import me.dgahn.baseball.repo.BaseBallRepository;
+import me.dgahn.baseball.repo.RandomNumberGenerator;
 
-public class BaseBallApplicationService {
+public class BaseBallViewModel {
 
-	private final BaseBallRepository repository;
+	private final RandomNumberGenerator generator;
 
-	public BaseBallApplicationService(final BaseBallRepository repository) {
-		this.repository = repository;
+	public BaseBallViewModel(final RandomNumberGenerator generator) {
+		this.generator = generator;
 	}
 
 	public BaseBallResult valid(final BaseBall answerBall) {
-		final var problemBall = repository.getBaseBall().orElseGet(() -> {
+		final var problemBall = generator.getBaseBall().orElseGet(() -> {
 			newProblemBall();
-			return repository.getBaseBall().get();
+			return generator.getBaseBall().get();
 		});
 
 		final var baseBallResult = problemBall.prepare(answerBall);
 		if (baseBallResult == BaseBallResult.THREE_STRIKE) {
-			repository.setBaseBall(null);
+			generator.setBaseBall(null);
 		}
 		return baseBallResult;
 	}
@@ -30,8 +30,7 @@ public class BaseBallApplicationService {
 	private void newProblemBall() {
 		final var newBaseBall = new BaseBall();
 		out.println(newBaseBall.getValue());
-		repository.setBaseBall(newBaseBall);
+		generator.setBaseBall(newBaseBall);
 	}
 
 }
-

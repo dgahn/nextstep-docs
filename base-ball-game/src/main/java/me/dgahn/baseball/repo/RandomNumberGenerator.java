@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import me.dgahn.baseball.domain.BaseBall;
 
-public class BaseBallRepository {
+public class RandomNumberGenerator {
 
 	private BaseBall baseBall;
 

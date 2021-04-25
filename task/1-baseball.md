@@ -156,7 +156,7 @@ prepare() 함수를 분할한다.
 그에 따라 중복되는 수가 존재하지 않도록 로직을 구성한다.
 ```
 
-### reactor(BaseBall, StringUtil) : 문자열에서 특정 문자가 있는지 확인하는 함수 분할
+### refactor(BaseBall, StringUtil) : 문자열에서 특정 문자가 있는지 확인하는 함수 분할
 
 ```
 문자열에서 특정 문자가 있는지 확인하는 함수를 분할하여 가독성을 더 높인다.
@@ -169,4 +169,17 @@ prepare() 함수를 분할한다.
 
 문제를 틀리는 경우 : 계속 입력할 수 있게 한다.
 문제를 맞추는 경우 : 1을 누르면 다시 시작, 2를 누르면 종료하게 한다.
+```
+
+### refactor(Launcher, RandomGenerator, BaseBallConsoleView, BaseBallViewModel) : MVVM 패턴으로 변경
+
+```
+MVC 패턴에서 MVVM 패턴으로 변경한다.
+
+이 애플리케이션은 웹 애플리케이션이 아니기 때문에 MVC 패턴보다 MVVM 패턴을 따라가는 것이 더
+적합하다고 판단이 된다. 이에 따라 MVVM 패턴으로 구조를 변경한다.
+
+그에 따라 다음 클래스를 변경한다.
+- BaseBallRepository -> RandomGenerator
+- BaseBallApplicationService -> BaseBallViewModel
 ```

@@ -1,24 +1,26 @@
 package me.dgahn.baseball;
 
-import me.dgahn.baseball.application.BaseBallApplicationService;
+import java.util.Scanner;
+
 import me.dgahn.baseball.domain.BaseBallResult;
-import me.dgahn.baseball.repo.BaseBallRepository;
+import me.dgahn.baseball.repo.RandomNumberGenerator;
 import me.dgahn.baseball.view.BaseBallConsoleView;
+import me.dgahn.baseball.view.BaseBallViewModel;
 
 public class Launcher {
-	public static void main(String[] args) {
-		final var repository = new BaseBallRepository();
-		final var service = new BaseBallApplicationService(repository);
-		final var view = new BaseBallConsoleView();
+	public static void main(final String[] args) {
+		final var generator = new RandomNumberGenerator();
+		final var viewModel = new BaseBallViewModel(generator);
+		final var scanner = new Scanner(System.in);
+		final var view = new BaseBallConsoleView(scanner);
 
-		playGame(repository, service, view);
+		playGame(viewModel, view);
 	}
 
-	private static void playGame(BaseBallRepository repository,
-		BaseBallApplicationService service, BaseBallConsoleView view) {
+	private static void playGame(BaseBallViewModel viewModel, BaseBallConsoleView view) {
 		while (true) {
 			final var answerBall = view.getBaseball();
-			final var result = service.valid(answerBall);
+			final var result = viewModel.valid(answerBall);
 
 			view.result(result);
 

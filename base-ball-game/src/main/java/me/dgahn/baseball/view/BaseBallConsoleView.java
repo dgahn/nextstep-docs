@@ -10,11 +10,16 @@ import me.dgahn.baseball.domain.BaseBallResult;
 
 public class BaseBallConsoleView {
 
+	private final Scanner scanner;
+
+	public BaseBallConsoleView(final Scanner scanner) {
+		this.scanner = scanner;
+	}
+
 	public BaseBall getBaseball() {
 		try {
 			out.println("숫자를 입력해주세요(100 ~ 999 중 3개의 자리 수가 중복되지 않는 수) : ");
-			final var sc = new Scanner(in);
-			return new BaseBall(sc.nextInt());
+			return new BaseBall(scanner.nextInt());
 		} catch (InputMismatchException e) {
 			err.println("숫자를 입력해야합니다.(100 ~ 999)");
 			return getBaseball();
