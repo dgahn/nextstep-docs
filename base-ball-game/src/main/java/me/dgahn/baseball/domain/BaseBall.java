@@ -6,6 +6,7 @@ import java.util.Random;
 
 import me.dgahn.baseball.util.StringUtil;
 
+// ToDo 코딩 컨벤션으로 조건 / 반복문에 중괄호 필수 사용 적용
 public class BaseBall {
 	private final String value;
 
