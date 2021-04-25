@@ -25,18 +25,8 @@ public class Launcher {
 	) {
 		do {
 			play(viewModel, view);
-		} while (retry(viewModel, view));
-	}
-
-	private static boolean retry(
-		final BaseBallViewModel viewModel,
-		final BaseBallConsoleView view
-	) {
-		final boolean retry = view.retry();
-		if (retry) {
-			viewModel.setCompleted(false);
-		}
-		return retry;
+			replay(viewModel, view);
+		} while (viewModel.isContinued());
 	}
 
 	private static void play(
@@ -44,11 +34,36 @@ public class Launcher {
 		final BaseBallConsoleView view
 	) {
 		while (!viewModel.isCompleted()) {
-			final BaseBall answerBall = view.input();
-			viewModel.process(answerBall);
+			viewModel.process(createBaseBall(viewModel, view));
 
 			final var result = viewModel.getBaseBallResult();
-			view.result(result);
+			view.info(result.getResultMessage());
+		}
+	}
+
+	private static void replay(
+		final BaseBallViewModel viewModel,
+		final BaseBallConsoleView view
+	) {
+		try {
+			final String input = view.input(viewModel.getOutput());
+			viewModel.setContinued(input);
+		} catch (final IllegalArgumentException e) {
+			view.error(e.getMessage());
+			replay(viewModel, view);
+		}
+	}
+
+	private static BaseBall createBaseBall(
+		final BaseBallViewModel viewModel,
+		final BaseBallConsoleView view
+	) {
+		try {
+			final String output = viewModel.getOutput();
+			return new BaseBall(view.input(output));
+		} catch (IllegalArgumentException e) {
+			view.error(e.getMessage());
+			return createBaseBall(viewModel, view);
 		}
 	}
 }

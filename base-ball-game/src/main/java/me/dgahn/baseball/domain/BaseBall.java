@@ -2,17 +2,17 @@ package me.dgahn.baseball.domain;
 
 import static me.dgahn.baseball.util.Constants.*;
 
+import me.dgahn.baseball.util.IntUtil;
 import me.dgahn.baseball.util.StringUtil;
 
 public class BaseBall {
 
 	private final String value;
 
-	public BaseBall(final int value) {
+	public BaseBall(final String value) {
 		checkNumberRange(value);
-		final var stringValue = Integer.toString(value);
-		checkDuplicateNumber(stringValue);
-		this.value = stringValue;
+		checkDuplicateNumber(value);
+		this.value = value;
 	}
 
 	public String getValue() {
@@ -96,8 +96,9 @@ public class BaseBall {
 		return BaseBallResult.ONE_STRIKE_TWO_BALL;
 	}
 
-	private void checkNumberRange(final int value) {
-		if(value < BASE_BALL_MIN_NUMBER || value > BASE_BALL_MAX_NUMBER) {
+	private void checkNumberRange(final String value) {
+		final var intValue = StringUtil.toInt(value);
+		if(!IntUtil.isBetween(intValue, BASE_BALL_MIN_NUMBER, BASE_BALL_MAX_NUMBER)) {
 			throw new IllegalArgumentException("숫자는 100이상 999이하여야 합니다. (number : " + value + ")");
 		}
 	}

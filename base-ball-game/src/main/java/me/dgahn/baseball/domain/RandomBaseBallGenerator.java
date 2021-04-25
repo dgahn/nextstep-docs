@@ -16,7 +16,7 @@ public class RandomBaseBallGenerator implements RandomGenerator<BaseBall> {
 	@Override
 	public void generate() {
 		try {
-			baseBall = new BaseBall(getRandomValue());
+			baseBall = new BaseBall(Integer.toString(getRandomValue()));
 		} catch (IllegalArgumentException e) {
 			generate();
 		}

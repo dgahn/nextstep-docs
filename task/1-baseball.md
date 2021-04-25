@@ -215,3 +215,9 @@ BaseBall 생성하는 구조를 변경한다.
 BaseBall을 기본 생성자로 만들면 중복된 숫자가 있는 경우에 대해서 보장하지 않는다. 
 이를 해결하기 위해서 기본 생성자를 삭제하고 BaseBall을 자동 생성하는 로직을 RandomBaseBallGenerator로 모은다.
 ```
+
+### refactor : BaseBallConsoleView의 역할 최소화
+
+```
+BaseBallConsoleView는 View인 만큼 입력과 출력의 기능만 하도록 구성한다.
+```
