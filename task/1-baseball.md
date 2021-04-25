@@ -206,3 +206,12 @@ MVC 패턴에서 MVVM 패턴으로 변경한다.
 ```
 코딩 컨벤션을 지키지 않은 것이나 오타가 있는 것에 대해 수정한다.
 ```
+
+### refactor(BaseBall, BaseBallTest, RandomBaseBallGenerator, RandomBaseBallGeneratorTest) : BaseBall 생성하는 구조 변경
+
+```
+BaseBall 생성하는 구조를 변경한다.
+
+BaseBall을 기본 생성자로 만들면 중복된 숫자가 있는 경우에 대해서 보장하지 않는다. 
+이를 해결하기 위해서 기본 생성자를 삭제하고 BaseBall을 자동 생성하는 로직을 RandomBaseBallGenerator로 모은다.
+```

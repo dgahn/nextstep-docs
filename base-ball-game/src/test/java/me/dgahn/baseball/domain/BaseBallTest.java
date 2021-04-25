@@ -2,6 +2,8 @@ package me.dgahn.baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,15 +36,6 @@ class BaseBallTest {
 		assertThatThrownBy(() -> new BaseBall(input))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("숫자가 중복되면 안됩니다. (number : " + input + ")");
-	}
-
-	@Test
-	@DisplayName("기본 생성자로 3자리 숫자의 value를 갖는 BaseBall을 만들 수 있다.")
-	void defaultConstructBaseBallTest() {
-		for (int i = 0; i < 10000; i++) {
-			final BaseBall baseBall = new BaseBall();
-			assertThat(Integer.parseInt(baseBall.getValue())).isBetween(100, 999);
-		}
 	}
 
 	@ParameterizedTest

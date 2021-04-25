@@ -1,15 +1,17 @@
 package me.dgahn.baseball;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import me.dgahn.baseball.domain.BaseBall;
-import me.dgahn.baseball.repo.RandomNumberGenerator;
+import me.dgahn.baseball.domain.RandomBaseBallGenerator;
 import me.dgahn.baseball.view.BaseBallConsoleView;
 import me.dgahn.baseball.view.BaseBallViewModel;
 
 public class Launcher {
 	public static void main(final String[] args) {
-		final var generator = new RandomNumberGenerator();
+		final var random = new Random();
+		final var generator = new RandomBaseBallGenerator(random);
 		final var viewModel = new BaseBallViewModel(generator);
 		final var scanner = new Scanner(System.in);
 		final var view = new BaseBallConsoleView(scanner);
