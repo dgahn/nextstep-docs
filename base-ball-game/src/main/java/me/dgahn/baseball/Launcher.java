@@ -20,8 +20,9 @@ public class Launcher {
 	private static void playGame(BaseBallViewModel viewModel, BaseBallConsoleView view) {
 		while (true) {
 			final var answerBall = view.getBaseball();
-			final var result = viewModel.valid(answerBall);
+			viewModel.process(answerBall);
 
+			final var result = viewModel.getBaseBallResult();
 			view.result(result);
 
 			if (result == BaseBallResult.THREE_STRIKE && !view.again()) {

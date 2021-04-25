@@ -6,12 +6,14 @@ object TestVersion {
     const val jacoco = "0.8.6"
     const val junit = "5.7.1"
     const val assertj = "3.19.0"
+    const val mockito = "3.+"
 }
 
 object TestLibs {
     const val junitBom = "org.junit:junit-bom:${TestVersion.junit}"
     const val jupiter = "org.junit.jupiter:junit-jupiter"
     const val assertjCore = "org.assertj:assertj-core:${TestVersion.assertj}"
+    const val mockito = "org.mockito:mockito-core:${TestVersion.mockito}"
 }
 
 object JacocoProps {

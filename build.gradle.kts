@@ -24,6 +24,7 @@ allprojects {
         testImplementation(platform(TestLibs.junitBom))
         testImplementation(TestLibs.jupiter)
         testImplementation(TestLibs.assertjCore)
+        testImplementation(TestLibs.mockito)
     }
 
     jacoco {

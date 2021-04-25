@@ -183,3 +183,14 @@ MVC 패턴에서 MVVM 패턴으로 변경한다.
 - BaseBallRepository -> RandomGenerator
 - BaseBallApplicationService -> BaseBallViewModel
 ```
+
+### feat(BaseBallViewModel, BaseBallViewTest) : 게임 상태에 대해 BaseBallViewModel에서 관리하도록 기능 변경
+
+```
+게임 상태에 대해 BaseBallViewModel에서 관리하도록 기능 변경한다.
+
+게임 상태는 다음과 같이 변경된다.
+- 게임 상태에 대한 값은 completed다.
+- 처음 게임이 시작하면 false다.
+- 숫자를 맞추면 true다.
+```

@@ -9,22 +9,32 @@ import me.dgahn.baseball.repo.RandomNumberGenerator;
 public class BaseBallViewModel {
 
 	private final RandomNumberGenerator generator;
+	private boolean completed = false;
+	private BaseBallResult baseBallResult;
 
 	public BaseBallViewModel(final RandomNumberGenerator generator) {
 		this.generator = generator;
 	}
 
-	public BaseBallResult valid(final BaseBall answerBall) {
-		final var problemBall = generator.getBaseBall().orElseGet(() -> {
-			newProblemBall();
-			return generator.getBaseBall().get();
-		});
+	public boolean isCompleted() {
+		return completed;
+	}
 
-		final var baseBallResult = problemBall.prepare(answerBall);
-		if (baseBallResult == BaseBallResult.THREE_STRIKE) {
-			generator.setBaseBall(null);
-		}
+	public BaseBallResult getBaseBallResult() {
 		return baseBallResult;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
+	public void process(final BaseBall answerBall) {
+		final var problemBall = generator.getBaseBall();
+
+		baseBallResult = problemBall.prepare(answerBall);
+		if(baseBallResult == BaseBallResult.THREE_STRIKE) {
+			completed = true;
+		}
 	}
 
 	private void newProblemBall() {
