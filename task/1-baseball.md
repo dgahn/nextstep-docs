@@ -221,3 +221,9 @@ BaseBall을 기본 생성자로 만들면 중복된 숫자가 있는 경우에 �
 ```
 BaseBallConsoleView는 View인 만큼 입력과 출력의 기능만 하도록 구성한다.
 ```
+
+### test(StringUtil, IntUtil, BaseBallResult) : 테스트 커버리를 위한 테스트 추가
+
+```
+Jacoco 설정에 의한 테스트 커버리지을 채우기 위해 테스트를 추가한다.
+```

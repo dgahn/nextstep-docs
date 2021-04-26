@@ -1,7 +1,8 @@
 package me.dgahn.baseball.util;
 
-// ToDo 테스트 커버리지 채울 필요 있음.
 public class StringUtil {
+
+	private StringUtil() {}
 
 	public static boolean contains(final String str, final char ch) {
 		return str.indexOf(ch) > -1;
