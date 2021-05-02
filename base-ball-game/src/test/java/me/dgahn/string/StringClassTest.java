@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class StringClassTest {
+class StringClassTest {
 
     @Test
     @DisplayName("String 클래스의 split() 함수는 문자열을 분리한다.")
@@ -58,7 +58,9 @@ public class StringClassTest {
         String str = "abc";
 
         // when
-        assertThatThrownBy(() -> { str.charAt(4); })
+        assertThatThrownBy(() -> {
+            str.charAt(4);
+        })
                 .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("String index out of range: 4");
     }
